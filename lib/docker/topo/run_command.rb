@@ -5,14 +5,14 @@ class Docker::Topo::RunCommand
   attr_accessor :image
   attr_accessor :name
   attr_accessor :env
-  def initialize(name, config)
+  def initialize(name, config, options)
     @action = "run -d"
     @links = config["links"]
     @volumes = config["volumes"]
     @image = config["image"]
     @env = config["env"]
     @ports = config["ports"]
-    @name = name    
+    @name = name
   end
 
   def to_s
@@ -21,7 +21,7 @@ class Docker::Topo::RunCommand
 
   def exploded_links
     if links
-      links.map {|source,target| "--link #{source}:#{target}" }.join " " 
+      links.map {|source,target| "--link #{source}:#{target}" }.join " "
     else
       ""
     end
@@ -29,7 +29,7 @@ class Docker::Topo::RunCommand
 
   def exploded_env
     if env
-      env.map {|source,target| "-e #{source}=#{target}" }.join " " 
+      env.map {|source,target| "-e #{source}=#{target}" }.join " "
     else
     end
   end

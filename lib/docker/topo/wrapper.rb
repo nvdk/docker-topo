@@ -1,7 +1,8 @@
 class Docker::Topo::Wrapper
   @docker_path = '/usr/bin/docker'
 
-  def initialize
+  def initialize( options )
+    @options = options
     @docker_path = find_docker
   end
 
@@ -10,9 +11,13 @@ class Docker::Topo::Wrapper
   end
 
   def x(command)
-    `#{@docker_path} #{command}`
+    if @options.has_key? :sudo
+      `sudo #{@docker_path} #{command}`
+    else
+      `#{@docker_path} #{command}`
+    end
   end
-  
+
   private
   def find_docker
     exts = ENV['PATHEXT'] ? ENV['PATHEXT'].split(';') : ['']

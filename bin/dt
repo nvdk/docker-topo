@@ -7,11 +7,16 @@ options = {}
 OptionParser.new do |opts|
   opts.banner = "Usage: dt [options]"
 
-  opts.on("-c", "--command", "command, currently run or start") do |c|
+  opts.on("-c COMMAND", "--command COMMAND", "command, currently run or start") do |c|
     options[:c] = c
   end
+
+  opts.on("-s", "--sudo", "run as sudo") do |c|
+    options[:sudo] = true
+  end
+
 end.parse!
 
 topo_path = File.join Dir.pwd, 'topo.yml'
-runner = Docker::Topo::Runner.new(topo_path)
+runner = Docker::Topo::Runner.new( topo_path, options )
 runner.send options[:c]
