@@ -22,4 +22,12 @@ class Docker::Topo::Runner
       break unless docker_wrapper.x(command)
     end
   end
+
+  def start
+    docker_wrapper = Docker::Topo::Wrapper.new options
+    @images.each do |name, config|
+      command = Docker::Topo::StartCommand.new name, config, options
+      break unless docker_wrapper.x( command )
+    end
+  end
 end
