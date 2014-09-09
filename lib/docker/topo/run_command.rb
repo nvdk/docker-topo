@@ -16,7 +16,7 @@ class Docker::Topo::RunCommand
   end
 
   def to_s
-    "#{action} --name #{name} #{exploded_links} #{exploded_volumes} #{image}"
+    "#{action} --name #{name} #{exploded_links} #{exploded_volumes} #{exploded_env} #{exploded_ports} #{image}"
   end
 
   def exploded_links
