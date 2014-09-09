@@ -5,6 +5,8 @@ class Docker::Topo::RunCommand
   attr_accessor :image
   attr_accessor :name
   attr_accessor :env
+  attr_accessor :ports
+
   def initialize(name, config, options)
     @action = "run -d"
     @links = config["links"]
