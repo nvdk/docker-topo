@@ -1,0 +1,16 @@
+images:
+  frontend: 
+    image: tenforce/uv-frontend
+    links: 
+      mysql: db
+      uv-backend: backend
+      virtuoso: virtuoso
+  uv-backend: 
+    image: tenforce/uv-backend
+    links:
+      mysql: db
+      virtuoso: virtuoso
+  virtuoso:
+    image: nicholsn/virtuoso
+  mysql:
+    image: tutum/mariadb      

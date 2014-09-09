@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require 'docker/topo'
+
+
+topo_path = File.join Dir.pwd, 'topo.yml'
+runner = Docker::Topo::Runner.new(topo_path)
+runner.run
+
