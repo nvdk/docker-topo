@@ -14,5 +14,4 @@ end.parse!
 
 topo_path = File.join Dir.pwd, 'topo.yml'
 runner = Docker::Topo::Runner.new(topo_path)
-runner.send(c)
-
+runner.send options[:c]
