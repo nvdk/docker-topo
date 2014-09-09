@@ -6,11 +6,8 @@ class Docker::Topo::Runner
   def initialize(path, options)
     @options = options
     config = ::YAML.load_file(path)
-    puts config["images"]
     @images = Docker::Topo::TSortableImages.new.merge! config["images"]
-    puts @images
     @images.tsort
-    puts @images
     repositories = config["repositories"]
   end
 
