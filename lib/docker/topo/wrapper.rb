@@ -12,10 +12,12 @@ class Docker::Topo::Wrapper
 
   def x(command)
     if @options.has_key? :sudo
-      `sudo #{@docker_path} #{command}`
+      cmd = "sudo #{@docker_path} #{command}"
     else
-      `#{@docker_path} #{command}`
+      cmd = "#{@docker_path} #{command}"
     end
+    puts "Running #{cmd}"
+    `#{cmd}`
   end
 
   private
