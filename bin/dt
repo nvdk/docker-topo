@@ -1,9 +1,18 @@
 #!/usr/bin/env ruby
 
 require 'docker/topo'
+require 'optparse'
 
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: dt [options]"
+
+  opts.on("-c", "--command", "command, currently run or start") do |c|
+    options[:c] = c
+  end
+end.parse!
 
 topo_path = File.join Dir.pwd, 'topo.yml'
 runner = Docker::Topo::Runner.new(topo_path)
-runner.run
+runner.send(c)
 
