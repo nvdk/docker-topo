@@ -15,6 +15,10 @@ OptionParser.new do |opts|
     options[:sudo] = true
   end
 
+  opts.on("-f", "--force", "force action") do |c|
+    options[:force] = true
+  end
+
 end.parse!
 
 topo_path = File.join Dir.pwd, 'topo.yml'
